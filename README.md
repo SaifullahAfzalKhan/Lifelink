@@ -1,70 +1,59 @@
-# LifeLink
+# LifeLink Backend
 
-> Connecting Verified Donors with Real Emergencies, in Real Time.
+Node.js + Express + TypeScript + MongoDB API for the LifeLink mobile app.
 
-## About
+## 1. Install
+```bash
+npm install
+```
 
-LifeLink is a blood response mobile application designed to connect eligible blood donors with verified blood requests from hospitals and blood banks.
+## 2. Environment
+Copy `.env.example` to `.env` and set `MONGO_URI` and `JWT_SECRET`.
 
-The platform focuses on making blood donation and emergency blood response more organized, accessible, and timely.
+For local MongoDB:
+```env
+MONGO_URI=mongodb://127.0.0.1:27017/lifelink
+PORT=5000
+JWT_SECRET=replace-with-a-long-secret
+CLIENT_ORIGIN=*
+```
 
-## User Roles in our Application
+## 3. Run
+```bash
+npm run dev
+```
 
-LifeLink supports three main user roles:
+Build/production:
+```bash
+npm run build
+npm start
+```
 
-- **Patient / Family** – Create and track blood requests.
-- **Donor** – Manage availability and respond to nearby blood donation opportunities.
-- **Hospital / Blood Bank** – Verify blood requests and update their status.
+Optional demo data:
+```bash
+npm run seed
+```
+Demo accounts use password `123456`.
 
-## Key Features
+## Main API endpoints
+- `POST /api/auth/register`
+- `POST /api/auth/login`
+- `GET/PATCH /api/users/me`
+- `GET /api/dashboard`
+- `GET /api/requests`
+- `GET /api/requests/open`
+- `POST /api/requests`
+- `PATCH /api/requests/:id/status`
+- `GET /api/donations/mine`
+- `POST /api/donations`
+- `GET /api/inventory`
+- `PUT /api/inventory`
+- `GET /api/notifications`
+- `PATCH /api/notifications/:id/read`
 
-### Patient / Family
-- Create blood requests
-- Select blood group and required units
-- Set request urgency
-- Track request status
-- View nearby verified blood sources
-- Receive notifications and updates
+Use `Authorization: Bearer <token>` for protected endpoints.
 
-### Donor
-- Manage donor availability
-- Receive nearby blood opportunity notifications
-- Find verified blood banks
-- View donation history
-- Receive eligibility reminders
-
-### Hospital / Blood Bank
-- View incoming blood requests
-- Verify requests
-- Update request status
-- Manage fulfillment progress
-
-## Technology Stack
-
-- React Native
-- TypeScript
-- Expo
-- Expo Router
-- NativeWind
-- React Query
-- React Hook Form
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- Firebase Authentication
-- Firebase Cloud Messaging
-- Google Maps API
-- REST API
-- JWT
-- Role-Based Access Control
-- GitHub
-- Expo EAS
-
-## Project Structure
-
-```text
-LifeLink/
-├── Mobile/
-├── Stitch Export/
-└── README.md
+## Mobile app connection
+Create one API helper in the Expo app and use your computer's LAN IP on a physical phone, for example:
+`http://192.168.1.10:5000/api`
+Do not use `localhost` from a physical phone; `localhost` points to the phone itself.
