@@ -8,7 +8,7 @@ LifeLink is a blood response mobile application designed to connect eligible blo
 
 The platform focuses on making blood donation and emergency blood response more organized, accessible, and timely.
 
-## User Roles
+## User Roles in our Application
 
 LifeLink supports three main user roles:
 
